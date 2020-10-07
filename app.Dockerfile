@@ -10,4 +10,4 @@ RUN cd /work && \
 RUN rm -rf /work
 
 WORKDIR /app
-CMD ["node", "bundle.js"]
+CMD ["node", "app.js"]
