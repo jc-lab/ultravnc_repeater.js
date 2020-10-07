@@ -20,7 +20,7 @@ httpServer.use(expressBunyanLogger({
   }
 }));
 httpServer.use('/', repeater.createHttpRouter());
-httpServer.listen(82);
+httpServer.listen(settings.portHttp);
 
 const serverA = repeater.createServerA();
 serverA.listen(settings.portA);
