@@ -13,15 +13,13 @@ const frontConfig = {
     path: path.resolve(__dirname, './build'),
     filename: 'public/bundle.js',
   },
-  devServer: {
-    host: '0.0.0.0', // Required for docker
-    publicPath: '/assets/',
-    contentBase: path.resolve(__dirname, './views'),
-    watchContentBase: true,
-    compress: true,
-    port: 9001
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
   },
-  devtool: 'inline-source-map',
+  optimization: {
+    minimize: false
+  }
 }
 
 const backConfig = {
@@ -37,7 +35,12 @@ const backConfig = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
-  externals: [nodeExternals()],
+  // externals: [nodeExternals()],
+  externals: [
+    {
+      'yamlparser': 'yamlparser'
+    }
+  ],
   module: {
     rules: [
       {
@@ -74,6 +77,9 @@ const backConfig = {
       ],
     }),
   ],
+  optimization: {
+    minimize: false
+  }
 }
 
 // Combined 'module.exports'

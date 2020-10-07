@@ -4,10 +4,10 @@ COPY [ "./", "/work/" ]
 
 RUN cd /work && \
     npm install && \
-    npm run build && \
+    npm run build:full && \
     cp -rf build /app
-    cd / && \
-    rm -rf /work
+
+RUN rm -rf /work
 
 WORKDIR /app
 CMD ["node", "bundle.js"]
