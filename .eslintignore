@@ -1,0 +1,5 @@
+node_modules/**
+dist/**
+packages/*/lib/**
+packages/*/test/**
+packages/*/node_modules/**
