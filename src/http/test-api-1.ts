@@ -40,7 +40,7 @@ export function showAllConnections(repeater: UltraVNCRepeater, req: express.Requ
       .reduce((result, cur) => {
         const socket = cur[1];
         result[cur[0]] = {
-          remoteAddress: socket.value.socket.socket.remoteAddress?.toString() || '',
+          remoteAddress: socket.value.socket.socket.remoteAddress && socket.value.socket.socket.remoteAddress.toString() || '',
           vncRemoteIdentity: socket.value.socket.vncRemoteIdentity
         };
         return result;
@@ -49,7 +49,7 @@ export function showAllConnections(repeater: UltraVNCRepeater, req: express.Requ
       .reduce((result, cur) => {
         const socket = cur[1];
         result[cur[0]] = {
-          remoteAddress: socket.value.socket.socket.remoteAddress?.toString() || '',
+          remoteAddress: socket.value.socket.socket.remoteAddress && socket.value.socket.socket.remoteAddress.toString() || '',
           vncRemoteIdentity: socket.value.socket.vncRemoteIdentity
         };
         return result;
