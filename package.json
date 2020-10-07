@@ -1,6 +1,6 @@
 {
   "name": "ultravnc_repeater",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Allows for connection to multiple servers (in listen mode), using only one port. All connection data flows through the repeater, allowing connection to multiple servers through a single port forward or tunnel.",
   "main": "index.js",
   "scripts": {
