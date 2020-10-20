@@ -43,7 +43,7 @@ export class UltraVNCRepeater {
       mode2: true,
       portA: (process.env.PORT_A && parseInt(process.env.PORT_A)) || 5901,
       portB: (process.env.PORT_B && parseInt(process.env.PORT_B)) || 5500,
-      keepalive: 0,
+      keepalive: (process.env.VNC_KEEPALIVE && parseInt(process.env.VNC_KEEPALIVE)) || 10000,
       portHttp: (process.env.PORT_HTTP && parseInt(process.env.PORT_HTTP)) || 8080
     }
   }
@@ -91,7 +91,7 @@ export class UltraVNCRepeater {
         const clientId = uuid.v4();
         logger.info({clientId}, 'viewer socket: connected');
 
-        const instance = new ViewerSocket(clientId, socket);
+        const instance = new ViewerSocket(this._settings, clientId, socket);
         instance.onHandshaked = (next) => {
           logger.info({
             clientId,
@@ -134,7 +134,7 @@ export class UltraVNCRepeater {
         const clientId = uuid.v4();
         logger.info({clientId}, 'server reverse socket: connected');
 
-        const instance = new ServerReverseSocket(clientId, socket);
+        const instance = new ServerReverseSocket(this._settings, clientId, socket);
         instance.onHandshaked = (next) => {
           logger.info({
             clientId,

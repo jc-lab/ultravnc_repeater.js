@@ -1,6 +1,7 @@
 import * as events from 'events';
 import * as net from 'net';
 import printf from 'printf';
+import {Settings} from './config/settings';
 import {BufferReader} from './buffer_reader';
 import {BufferWriter} from './buffer_writer';
 import {
@@ -42,12 +43,13 @@ export class ViewerSocket extends events.EventEmitter implements IViewerSocketEv
   public onHandshaked: (next: () => void) => void = (next) => next();
   public onData: (buffer: Buffer, next: (err?: any) => void) => void = (buffer, next) => next();
 
-  constructor(uniqueId: string, socket: net.Socket) {
+  constructor(settings: Settings, uniqueId: string, socket: net.Socket) {
     super();
     this._uniqueId = uniqueId;
     this._socket = socket;
     this._handshakeState = HandshakeState.readSettings;
     this._readingBuffer = null;
+    socket.setKeepAlive(true, settings.keepalive);
     socket
       .on('close', (hasError) => {
         this._closing = true;

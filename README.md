@@ -18,6 +18,10 @@ Default: 5500
 
 Default: 8080
 
+### VNC_KEEPALIVE
+
+Default: 10000 (ms)
+
 # Mode
 
 ## Mode 1 (Currently not supported)

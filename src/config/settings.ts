@@ -16,12 +16,15 @@ export class Settings implements ISettings {
       mode2: true,
       portA: 5901,
       portB: 5500,
-      keepalive: 0,
+      keepalive: 10000,
       portHttp: 8080,
     };
   }
 
   public get keepalive(): number {
+    if (!this.data.keepalive) {
+      return 10000;
+    }
     return this.data.keepalive;
   }
 
