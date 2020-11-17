@@ -177,6 +177,8 @@ export class UltraVNCRepeater {
         return false;
       }
 
+      const instance = RepeatPairWorker.create(vncRemoteIdentity, server.socket, viewer.socket);
+
       if (server.deferredNext) {
         server.deferredNext();
         server.deferredNext = undefined;
@@ -185,7 +187,7 @@ export class UltraVNCRepeater {
         viewer.deferredNext();
         viewer.deferredNext = undefined;
       }
-      const instance = RepeatPairWorker.create(vncRemoteIdentity, server.socket, viewer.socket);
+
       instance
         .on('close', () => {
           if (this._connectedPairs[vncRemoteIdentity] === instance) {
